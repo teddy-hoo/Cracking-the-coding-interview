@@ -1,5 +1,5 @@
 /**
- * Chapter 2  --  1.1
+ * Chapter 2  --  2.1
  * Write code to remove duplicates from an unsorted linked list.
  */
 
@@ -65,9 +65,9 @@ void naive(ListNode *head){
 }
 
 /**
- * Naive solution
- * Time:  O(n^2)
- * Space: O(1)
+ * Cache solution
+ * Time:  O(n)
+ * Space: O(n)
  */
 void cache(ListNode *head){
 
@@ -123,13 +123,13 @@ int main(){
     naive(two);
     printList(two);
 
-    two   = new ListNode(1);
-    three = new ListNode(2);
-    two->next       = three;
-    four  = new ListNode(1);
-    three->next     = four;
-    five  = new ListNode(2);
-    four->next      = five;
+    two         = new ListNode(1);
+    three       = new ListNode(2);
+    two->next   = three;
+    four        = new ListNode(1);
+    three->next = four;
+    five        = new ListNode(2);
+    four->next  = five;
     cache(two);
     printList(two);
 
