@@ -13,7 +13,7 @@
  * Analysis:
  * 1. Naive solution: travle the whole string, check each character appears
  *                    before, it will use no additional space, but will use
- * 					  more time.
+ *                    more time.
  * 2. Cache solution: cache the character travled in a hash, check next
  *                    character exists in the hash or not. this solution will
  *                    use additional data structure, but will very fast.
@@ -31,26 +31,26 @@ using namespace std;
  * Space: O(0)
  */
 bool naive(string s){
-	
-	int len = s.size();
+    
+    int len = s.size();
 
-	if(len <= 0){
-		return false;
-	}
+    if(len <= 0){
+        return false;
+    }
 
-	if(len > 256){
-		return true;
-	}
+    if(len > 256){
+        return true;
+    }
 
-	for(int i = 1; i < len; i++){
-		for(int j = 0; j < i; j++){
-			if(s[i] == s[j]){
-				return true;
-			}
-		}
-	}
+    for(int i = 1; i < len; i++){
+        for(int j = 0; j < i; j++){
+            if(s[i] == s[j]){
+                return true;
+            }
+        }
+    }
 
-	return false;
+    return false;
 }
 
 /**
@@ -62,27 +62,27 @@ bool naive(string s){
 
 bool cache1(string s){
 
-	int len = s.size();
+    int len = s.size();
 
-	if(len <= 0){
-		return false;
-	}
+    if(len <= 0){
+        return false;
+    }
 
-	if(len > 256){
-		return true;
-	}
+    if(len > 256){
+        return true;
+    }
 
-	bool cache[256] = {false};
+    bool cache[256] = {false};
 
-	for(int i = 0; i < len; i++){
-		char c = s[i];
-		if(cache[c]){
-			return true;
-		}
-		cache[c] = true;
-	}
+    for(int i = 0; i < len; i++){
+        char c = s[i];
+        if(cache[c]){
+            return true;
+        }
+        cache[c] = true;
+    }
 
-	return false;
+    return false;
 }
 
 /**
@@ -93,29 +93,29 @@ bool cache1(string s){
  */
 bool cache2(string s){
 
-	int len = s.size();
+    int len = s.size();
 
-	if(len <= 0){
-		return false;
-	}
+    if(len <= 0){
+        return false;
+    }
 
-	if(len > 256){
-		return true;
-	}
+    if(len > 256){
+        return true;
+    }
 
-	int cache[8] = {0};
+    int cache[8] = {0};
 
-	for(int i = 0; i < len; i++){
-		char c = s[i];
-		int index = c / 32;
-		int bits = c % 32;
-		if(cache[index] & 1 << bits){
-			return true;
-		}
-		cache[index] |= 1 << bits;
-	}
+    for(int i = 0; i < len; i++){
+        char c = s[i];
+        int index = c / 32;
+        int bits = c % 32;
+        if(cache[index] & 1 << bits){
+            return true;
+        }
+        cache[index] |= 1 << bits;
+    }
 
-	return false;
+    return false;
 }
 
 /**
@@ -124,23 +124,23 @@ bool cache2(string s){
  */
 int main(){
 
-	vector<string> cases;
-	cases.push_back("");
-	cases.push_back("abc");
-	cases.push_back("abca");
-	cases.push_back("abc &");
-	cases.push_back("ab cd a");
-	cases.push_back("abcd&&");
-	cases.push_back("abdfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
+    vector<string> cases;
+    cases.push_back("");
+    cases.push_back("abc");
+    cases.push_back("abca");
+    cases.push_back("abc &");
+    cases.push_back("ab cd a");
+    cases.push_back("abcd&&");
+    cases.push_back("abdfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
 
-	for(int i = 0; i < cases.size(); i++){
-		cout << "case " << i << " result using naive:   " <<
-				naive(cases[i]) << endl;
-		cout << "case " << i << " result using cache 1: " <<
-				cache1(cases[i]) << endl;
-		cout << "case " << i << " result using cache 2: " <<
-				cache2(cases[i]) << endl;
-	}
+    for(int i = 0; i < cases.size(); i++){
+        cout << "case " << i << " result using naive:   " <<
+                naive(cases[i]) << endl;
+        cout << "case " << i << " result using cache 1: " <<
+                cache1(cases[i]) << endl;
+        cout << "case " << i << " result using cache 2: " <<
+                cache2(cases[i]) << endl;
+    }
 
-	return 0;
+    return 0;
 }
