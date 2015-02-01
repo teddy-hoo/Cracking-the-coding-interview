@@ -1,2 +1,3 @@
-# Cracking-the-coding-interview
-solutions of problems on Cracking the coding interview in C++.
+# Cracking the coding interview
+============
+The solutions of the problems in book "Cracking the coding interview".
