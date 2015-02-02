@@ -1,5 +1,5 @@
 /**
- * Chapter 11  --  11.1
+ * Chapter 11  --  11.2
  * Write a method to sort an array of strings so that all the anagrams are next
  * each other.
  */
